@@ -1,0 +1,83 @@
+    public static void main(String[] args) {
+
+        boolean main = true;
+
+        while (main == true) {
+            System.out.println("Welcome to Kaito's Store!\nDo you want to buy something? (yes/no)");
+            Scanner scan0 = new Scanner(System.in);
+            String input = scan0.next();
+
+            main = false;
+            boolean check = false;
+            int totalcost = 0;
+
+            while (input.equalsIgnoreCase("yes")) {
+                System.out.println("Available Items:\nItem:\t\tCost:\tCode:\nCoke\t\t$20\t1\nEgg\t\t$12\t2\nBread\t\t$20\t3\nCandy\t\t$1\t4\nMarijuana\t$500\t5");
+
+                int product = scan0.nextInt();
+                double price = 0;
+                String name = "";
+
+                switch (product) {
+                    case 1:
+                        price = 20;
+                        name = "Coke";
+                        check = true;
+                        break;
+
+                    case 2:
+                        price = 12;
+                        name = "Egg";
+                        check = true;
+                        break;
+
+                    case 3:
+                        price = 20;
+                        name = "Bread";
+                        check = true;
+                        break;
+
+                    case 4:
+                        price = 1;
+                        name = "Candy";
+                        check = true;
+                        break;
+
+                    case 5:
+                        price = 500;
+                        name = "Marijuana";
+                        check = true;
+                        break;
+
+                }
+                if (check == true) {
+                    System.out.println("You have selected " + name + " for $" + price + "\nEnter Quantity:");
+                    int quantity = scan0.nextInt();
+                    int subtotal = (int) (price * quantity);
+                    totalcost += subtotal;
+                    System.out.println("Subtota: " + quantity + " x $" + price + " = $" + subtotal);
+                    System.out.println("\nDo you want to buy another item? (yes/no)");
+                    input = scan0.next();
+                }
+                if (input.equalsIgnoreCase("no")) {
+                    System.out.println("Total: $" + totalcost);
+
+                    int payment = 0;
+                    do {
+                        System.out.println("Please enter the amount of money:");
+                        payment = scan0.nextInt();
+
+                        if (payment < totalcost) {
+                            System.out.println("Insufficient fund. You need at least $" + (totalcost - payment) + " more.");
+                        } else {
+                            int change = payment - totalcost;
+                            System.out.println("Thank you for buying at Kaito's Store! \nYour change is $" + change + "\n Please come back soon!");
+                        }
+                    } while (payment < totalcost);
+                    main = true;
+                    System.out.println("\n \n \n");
+                }
+            }
+
+        }
+    }
